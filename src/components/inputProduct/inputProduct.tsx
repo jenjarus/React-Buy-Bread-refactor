@@ -2,7 +2,7 @@ import { useRef, useState, KeyboardEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 import { setItem } from "../../store/slices/items.slice.ts";
 import { setEditProductItem, setProductItem } from "../../store/slices/products.slice.ts";
-import { InputColorList } from "./";
+import { InputColorList, InputNameProductList } from "./";
 import { IDataProducts } from "../../types/productsTypes.ts";
 
 export const InputProduct = () => {
@@ -103,7 +103,7 @@ export const InputProduct = () => {
           </button>
           <InputColorList set={setColor} color={color} />
         </div>
-        {/*<InputNameProductList input={input} setProduct={setProduct} />*/}
+        <InputNameProductList input={input} setProduct={setProduct} />
       </div>
     </div>
   );
