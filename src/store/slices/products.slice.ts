@@ -70,7 +70,7 @@ export const productsSlice = createSlice({
     setEditProductItem: (state, action: PayloadAction<ISetEditProductItemAction>) => {
       state.products = [
         ...state.products.map((item) =>
-          item.id === action.payload.id ? { ...item, ...[action.payload.item] } : item,
+          item.id === action.payload.id ? { ...item, ...action.payload.item } : item,
         ),
       ];
     },

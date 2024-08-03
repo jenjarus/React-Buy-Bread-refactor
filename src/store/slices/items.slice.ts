@@ -39,6 +39,16 @@ export const itemsSlice = createSlice({
   name: "items",
   initialState: itemsState,
   reducers: {
+    setItem: (state, action: PayloadAction<IDataItems>) => {
+      state.items = [...state.items, action.payload];
+    },
+    setEditItem: (state, action: PayloadAction<IDataItems>) => {
+      state.items = [
+        ...state.items.map((item) =>
+            item.id === action.payload.id ? { ...item, ...action.payload } : item,
+        ),
+      ];
+    },
     setDoneItem: (state, action: PayloadAction<number>) => {
       state.items = [
         ...state.items.map((item) =>
@@ -55,6 +65,6 @@ export const itemsSlice = createSlice({
   },
 });
 
-export const { setDoneItem, deleteItem, deleteDoneItems } = itemsSlice.actions;
+export const { setItem, setEditItem, setDoneItem, deleteItem, deleteDoneItems } = itemsSlice.actions;
 
 export default itemsSlice.reducer;
