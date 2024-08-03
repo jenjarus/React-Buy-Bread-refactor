@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { saveState } from "../utils/localStorage.ts";
 import itemsSlice from "./slices/items.slice.ts";
 import productsSlice from "./slices/products.slice.ts";
+import inputSlice from "./slices/input.slice.ts";
 import themeSlice from "./slices/theme.slice.ts";
 
 const store = configureStore({
   reducer: {
     itemsSlice: itemsSlice,
     productsSlice: productsSlice,
+    inputSlice: inputSlice,
     themeSlice: themeSlice,
   },
 });

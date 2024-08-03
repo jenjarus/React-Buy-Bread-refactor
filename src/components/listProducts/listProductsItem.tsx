@@ -2,6 +2,7 @@ import { FC } from "react";
 import classNames from "classnames";
 import { useAppDispatch } from "../../store/hooks.ts";
 import { deleteItem, setDoneItem } from "../../store/slices/items.slice.ts";
+import { resetInputDeleteItem, setEdit } from "../../store/slices/input.slice.ts";
 import { IDataItems } from "../../types/itemsTypes.ts";
 
 interface IProps {
@@ -20,11 +21,16 @@ export const ListProductsItem: FC<IProps> = ({ item }) => {
   };
 
   const handleClickEdit = () => {
-    //dispatch(setEdit(item.id, true));
+    const setEditParam = {
+      inputEdit: true,
+      idEdit: item.id,
+    };
+    dispatch(setEdit(setEditParam));
   };
 
   const handleClickDelete = () => {
     dispatch(deleteItem(item.id));
+    dispatch(resetInputDeleteItem(item.id));
   };
 
   return (
