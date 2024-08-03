@@ -2,6 +2,7 @@ import { useRef, useState, KeyboardEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 import { setItem } from "../../store/slices/items.slice.ts";
 import { setEditProductItem, setProductItem } from "../../store/slices/products.slice.ts";
+import { InputColorList } from "./";
 import { IDataProducts } from "../../types/productsTypes.ts";
 
 export const InputProduct = () => {
@@ -100,7 +101,7 @@ export const InputProduct = () => {
           <button onClick={() => addItem()} className="btn">
             Добавить
           </button>
-          {/*<InputColorList set={setColor} color={color} />*/}
+          <InputColorList set={setColor} color={color} />
         </div>
         {/*<InputNameProductList input={input} setProduct={setProduct} />*/}
       </div>

@@ -4,6 +4,7 @@ import { IDataProducts } from "../../types/productsTypes.ts";
 import { setEdit } from "../../store/slices/input.slice.ts";
 import { setEditProductItem, setProductItem } from "../../store/slices/products.slice.ts";
 import { setEditItem } from "../../store/slices/items.slice.ts";
+import { InputColorList } from "./";
 import { IDataItems } from "../../types/itemsTypes.ts";
 
 export const InputEditProduct = () => {
@@ -113,7 +114,7 @@ export const InputEditProduct = () => {
           <button className="btn" onClick={() => addItem()}>
             Изменить
           </button>
-          {/*<InputColorList set={setColor} color={color}/>*/}
+          <InputColorList set={setColor} color={color} />
           <span className="icon icon-close" onClick={() => handleClickClose()}></span>
         </div>
         {/*<InputNameProductList input={input} setProduct={setProduct}/>*/}
