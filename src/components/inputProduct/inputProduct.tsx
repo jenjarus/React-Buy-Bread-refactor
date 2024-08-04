@@ -1,9 +1,9 @@
-import {useEffect, useRef, useState, KeyboardEvent, FC} from "react";
+import { useEffect, useRef, useState, KeyboardEvent, FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 import { IDataProducts } from "../../types/productsTypes.ts";
 import { setInputUpdatedItem } from "../../store/slices/input.slice.ts";
 import { updateProduct, addProduct } from "../../store/slices/products.slice.ts";
-import {addItem, updateItem} from "../../store/slices/items.slice.ts";
+import { addItem, updateItem } from "../../store/slices/items.slice.ts";
 import { InputColorList, InputNameProductList } from "./";
 import { IDataItems } from "../../types/itemsTypes.ts";
 
@@ -11,7 +11,7 @@ interface IProps {
   isUpdatedItem: boolean;
 }
 
-export const InputProduct:FC<IProps> = ({isUpdatedItem}) => {
+export const InputProduct: FC<IProps> = ({ isUpdatedItem }) => {
   const { idUpdatedItem: id } = useAppSelector((state) => state.inputSlice);
   const { items } = useAppSelector((state) => state.itemsSlice);
   const { products } = useAppSelector((state) => state.productsSlice);
@@ -131,7 +131,9 @@ export const InputProduct:FC<IProps> = ({isUpdatedItem}) => {
             {isUpdatedItem ? "Изменить" : "Добавить"}
           </button>
           <InputColorList activeColor={color} setColor={setColor} />
-          {isUpdatedItem && <span className="icon icon-close" onClick={() => handleClickClose()}></span>}
+          {isUpdatedItem && (
+            <span className="icon icon-close" onClick={() => handleClickClose()}></span>
+          )}
         </div>
         <InputNameProductList inputValue={input} setProduct={setProduct} />
       </div>
