@@ -102,7 +102,7 @@ export const InputEditProduct = () => {
   return (
     <div className="input-product">
       <div className="container">
-        <div className="input-product-wrap">
+        <div className="input-product__wrap">
           <input
             type="text"
             className="input"

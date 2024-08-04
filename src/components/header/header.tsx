@@ -22,13 +22,15 @@ export const Header = () => {
   }, [themeDark]);
 
   return (
-    <header>
+    <header className="header">
       <div className="container">
-        <div className="logo">
-          <img src={logo} alt="logo" />
+        <div className="header__wrap">
+          <div className="header-logo">
+            <img src={logo} alt="logo"/>
+          </div>
+          <div className="header-title">Купи хлеб</div>
+          <button className="header-theme__btn" onClick={() => handleClickTheme()}></button>
         </div>
-        <div className="title">Купи хлеб</div>
-        <button className="theme-btn" onClick={() => handleClickTheme()}></button>
       </div>
     </header>
   );

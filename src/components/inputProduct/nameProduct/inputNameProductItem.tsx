@@ -8,7 +8,7 @@ interface IProps {
 }
 
 export const InputNameProductItem: FC<IProps> = ({ item, setProduct }) => {
-  const classColorBtn = classNames("item", "btn", item.color);
+  const classColorBtn = classNames("product-list__item", "btn", item.color);
 
   return (
     <button className={classColorBtn} onClick={() => setProduct(item.id)}>

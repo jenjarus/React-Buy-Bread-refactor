@@ -51,20 +51,17 @@ $orange-color: #e57542;
 
 .input {
   width: 100%;
-  padding: 10px 20px;
+  padding: 9px 19px;
   border: 1px solid $border-color;
   border-radius: 5px;
   outline: none;
-}
-
-body {
-  font-family: $base-font;
 }
 
 .body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: $base-font;
 }
 
 .container {
@@ -73,23 +70,23 @@ body {
   padding: 0 15px;
 }
 
-header {
+.header {
   padding: 15px 0;
   background: $background-color;
   color: #fff;
 
-  .container {
+  &__wrap {
     display: flex;
     align-items: center;
   }
 
-  .title {
+  &-title {
     text-align: center;
     width: 100%;
     font-size: 20px;
   }
 
-  .theme-btn {
+  &-theme__btn {
     width: 40px;
     height: 40px;
     background: url("../assets/theme-moon.svg") no-repeat center / 24px;
@@ -104,7 +101,7 @@ header {
 .input-product {
   padding: 20px 0;
 
-  .input-product-wrap {
+  &__wrap {
     display: flex;
     align-items: center;
   }
@@ -115,14 +112,15 @@ header {
   position: relative;
   vertical-align: middle;
 
-  .color-btn {
-    width: 44px;
-    height: 44px;
+  &__btn {
+    display: block;
+    width: 39px;
+    height: 39px;
     border-radius: 5px;
     @include color-backgrounds();
   }
 
-  .color-dropdown {
+  &__dropdown {
     display: none;
     position: absolute;
     top: 100%;
@@ -149,15 +147,13 @@ header {
     }
   }
 
-  &:hover {
-    .color-dropdown {
-      display: block;
-      opacity: 1;
-      overflow: visible;
-    }
+  &:hover &__dropdown {
+    display: block;
+    opacity: 1;
+    overflow: visible;
   }
 
-  .color-item {
+  &__item {
     display: inline-block;
     width: 44px;
     height: 44px;
@@ -166,7 +162,7 @@ header {
     cursor: pointer;
     @include color-backgrounds();
 
-    &.active {
+    &--active {
       background-image: url("../assets/icon-check.svg");
       background-repeat: no-repeat;
       background-position: center;
@@ -175,13 +171,13 @@ header {
   }
 }
 
-.input-product-list {
+.product-list {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   margin: 10px -10px 0;
 
-  .item {
+  &__item {
     @include color-backgrounds();
 
     &:hover {
@@ -193,12 +189,12 @@ header {
 .list-products {
   padding: 20px 0;
 
-  .empty-item {
+  &__empty {
     padding: 30px 0;
     text-align: center;
   }
 
-  .item {
+  &__item {
     display: flex;
     padding: 15px 0;
     border-bottom: 1px solid $border-color;
@@ -214,10 +210,9 @@ header {
       }
     }
 
-    .color {
+    &-color {
       display: inline-block;
       width: 6px;
-      height: 20px;
       border-radius: 6px;
       vertical-align: middle;
       @include color-backgrounds();
@@ -227,7 +222,7 @@ header {
       }
     }
 
-    .text {
+    &-text {
       display: inline-block;
       width: 100%;
       margin: 0 15px;
@@ -245,7 +240,7 @@ header {
     }
   }
 
-  &.list-products-bought {
+  &-bought {
     position: relative;
     flex-grow: 1;
     background: $transparent-color;
@@ -261,7 +256,7 @@ header {
       background: url("../assets/hr-products.svg");
     }
 
-    .bought-top {
+    &__top {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -317,12 +312,12 @@ header {
   }
 }
 
-footer {
+.footer {
   padding: 15px 0;
   background: $background-color;
   color: #fff;
 
-  .copyright {
+  &-copyright {
     text-align: center;
   }
 }
@@ -335,17 +330,17 @@ footer {
     background-color: $transparent-color;
   }
 
-  .list-products.list-products-bought {
+  .list-products-bought {
     color: #000;
   }
 
-  .theme-btn {
+  .header-theme__btn {
     background: url("../assets/theme-sun.svg") no-repeat center / 24px;
   }
 }
 
 @media (max-width: 600px) {
-  .input-product .input-product-wrap {
+  .input-product__wrap {
     justify-content: center;
     flex-wrap: wrap;
 

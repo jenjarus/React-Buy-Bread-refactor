@@ -26,15 +26,15 @@ export const ListProducts: FC<IProps> = ({ isDoneList }) => {
     <div className={classListProduct}>
       <div className="container">
         {isDoneList && !!items.length && (
-          <div className="bought-top">
-            <div className="bought-count">Выполнено: {items.length}</div>
+          <div className="list-products-bought__top">
+            <div className="list-products-bought__count">Выполнено: {items.length}</div>
             <span className="link link-delete" onClick={() => handleClickDeleteDone()}>
               Очистить список
             </span>
           </div>
         )}
         <div className="items">
-          {!isDoneList && !items.length && <div className="empty-item">Список пуст</div>}
+          {!isDoneList && !items.length && <div className="list-products__empty">Список пуст</div>}
           {items.map((el) => (
             <ListProductsItem key={el.id} item={el} />
           ))}

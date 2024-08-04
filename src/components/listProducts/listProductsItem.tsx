@@ -11,7 +11,7 @@ interface IProps {
 
 export const ListProductsItem: FC<IProps> = ({ item }) => {
   const dispatch = useAppDispatch();
-  const classColor = classNames("color", item.color);
+  const classColor = classNames("list-products__item-color", item.color);
 
   const handleClickDone = () => {
     dispatch(setDoneItem(item.id));
@@ -31,9 +31,9 @@ export const ListProductsItem: FC<IProps> = ({ item }) => {
   };
 
   return (
-    <div className="item">
+    <div className="list-products__item">
       <div className={classColor}></div>
-      <p className="text" onClick={() => handleClickDone()}>
+      <p className="list-products__item-text" onClick={() => handleClickDone()}>
         {item.text}
       </p>
       <button className="icon icon-edit" onClick={() => handleClickEdit()}></button>

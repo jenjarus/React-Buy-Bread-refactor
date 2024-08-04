@@ -9,12 +9,12 @@ interface IProps {
 
 export const InputColorList: FC<IProps> = ({ setColor, activeColor }) => {
   const colorNameItem: string[] = ["transparent", "yellow", "red", "blue", "green", "orange"];
-  const classColorBtn = classNames("color-btn", activeColor);
+  const classColorBtn = classNames("color-box__btn", activeColor);
 
   return (
     <div className="color-box">
       <button className={classColorBtn}></button>
-      <div className="color-dropdown">
+      <div className="color-box__dropdown">
         {colorNameItem.map((el) => (
           <InputColorItem key={el} name={el} setColor={setColor} activeName={activeColor} />
         ))}

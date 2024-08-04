@@ -8,8 +8,8 @@ interface IProps {
 }
 
 export const InputColorItem: FC<IProps> = ({ name, activeName, setColor }) => {
-  const classColorBtn = classNames("color-item", name, {
-    active: activeName === name,
+  const classColorBtn = classNames("color-box__item", name, {
+    "color-box__item--active": activeName === name,
   });
 
   return <button className={classColorBtn} onClick={() => setColor(name)}></button>;

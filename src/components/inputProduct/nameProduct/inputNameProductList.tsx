@@ -27,7 +27,7 @@ export const InputNameProductList: FC<IProps> = ({ inputValue, setProduct }) => 
 
   if (inputValue && productsList.length) {
     return (
-      <div className="input-product-list">
+      <div className="product-list">
         {productsList.slice(0, 10).map((el) => (
           <InputNameProductItem key={el.id} item={el} setProduct={setProduct} />
         ))}
