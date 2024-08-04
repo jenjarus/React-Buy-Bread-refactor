@@ -2,7 +2,7 @@ import { FC } from "react";
 import classNames from "classnames";
 import { useAppDispatch } from "../../store/hooks.ts";
 import { deleteItem, setDoneItem } from "../../store/slices/items.slice.ts";
-import { resetInputDeleteItem, setEdit } from "../../store/slices/input.slice.ts";
+import { resetInputDeleteItem, setInputUpdatedItem } from "../../store/slices/input.slice.ts";
 import { IDataItems } from "../../types/itemsTypes.ts";
 
 interface IProps {
@@ -11,10 +11,7 @@ interface IProps {
 
 export const ListProductsItem: FC<IProps> = ({ item }) => {
   const dispatch = useAppDispatch();
-  const classColor = classNames({
-    color: true,
-    [item.color]: !!item.color,
-  });
+  const classColor = classNames("color", item.color);
 
   const handleClickDone = () => {
     dispatch(setDoneItem(item.id));
@@ -22,10 +19,10 @@ export const ListProductsItem: FC<IProps> = ({ item }) => {
 
   const handleClickEdit = () => {
     const setEditParam = {
-      inputEdit: true,
-      idEdit: item.id,
+      isUpdatedItem: true,
+      idUpdatedItem: item.id,
     };
-    dispatch(setEdit(setEditParam));
+    dispatch(setInputUpdatedItem(setEditParam));
   };
 
   const handleClickDelete = () => {

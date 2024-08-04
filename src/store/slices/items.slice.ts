@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { loadState } from "../../utils/localStorage.ts";
 import { IDataItems } from "../../types/itemsTypes.ts";
 
-interface IInitialState {
+export interface IInitialState {
   items: IDataItems[];
 }
 
@@ -39,13 +39,13 @@ export const itemsSlice = createSlice({
   name: "items",
   initialState: itemsState,
   reducers: {
-    setItem: (state, action: PayloadAction<IDataItems>) => {
+    addItem: (state, action: PayloadAction<IDataItems>) => {
       state.items = [...state.items, action.payload];
     },
-    setEditItem: (state, action: PayloadAction<IDataItems>) => {
+    updateItem: (state, action: PayloadAction<IDataItems>) => {
       state.items = [
         ...state.items.map((item) =>
-            item.id === action.payload.id ? { ...item, ...action.payload } : item,
+          item.id === action.payload.id ? { ...item, ...action.payload } : item,
         ),
       ];
     },
@@ -65,6 +65,6 @@ export const itemsSlice = createSlice({
   },
 });
 
-export const { setItem, setEditItem, setDoneItem, deleteItem, deleteDoneItems } = itemsSlice.actions;
+export const { addItem, updateItem, setDoneItem, deleteItem, deleteDoneItems } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

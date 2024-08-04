@@ -3,14 +3,14 @@ import classNames from "classnames";
 
 interface IProps {
   name: string;
-  active: string;
-  set: (name: string) => void;
+  activeName: string;
+  setColor: (name: string) => void;
 }
 
-export const InputColorItem: FC<IProps> = ({ name, active, set }) => {
+export const InputColorItem: FC<IProps> = ({ name, activeName, setColor }) => {
   const classColorBtn = classNames("color-item", name, {
-    active: active === name,
+    active: activeName === name,
   });
 
-  return <button className={classColorBtn} onClick={() => set(name)}></button>;
+  return <button className={classColorBtn} onClick={() => setColor(name)}></button>;
 };

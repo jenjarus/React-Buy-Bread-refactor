@@ -3,20 +3,20 @@ import classNames from "classnames";
 import { InputColorItem } from "./inputColorItem.tsx";
 
 interface IProps {
-  set: (name: string) => void;
-  color: string;
+  setColor: (name: string) => void;
+  activeColor: string;
 }
 
-export const InputColorList: FC<IProps> = ({ set, color }) => {
+export const InputColorList: FC<IProps> = ({ setColor, activeColor }) => {
   const colorNameItem: string[] = ["transparent", "yellow", "red", "blue", "green", "orange"];
-  const classColorBtn = classNames("color-btn", color);
+  const classColorBtn = classNames("color-btn", activeColor);
 
   return (
     <div className="color-box">
       <button className={classColorBtn}></button>
       <div className="color-dropdown">
-        {colorNameItem.map((el, i) => (
-          <InputColorItem key={i} name={el} set={set} active={color} />
+        {colorNameItem.map((el) => (
+          <InputColorItem key={el} name={el} setColor={setColor} activeName={activeColor} />
         ))}
       </div>
     </div>

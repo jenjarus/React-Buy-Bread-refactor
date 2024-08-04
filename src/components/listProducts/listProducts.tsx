@@ -14,8 +14,7 @@ export const ListProducts: FC<IProps> = ({ isDoneList }) => {
   const items = isDoneList
     ? stateItems.filter((item) => item.done)
     : stateItems.filter((item) => !item.done);
-  const classListProduct = classNames({
-    "list-products": true,
+  const classListProduct = classNames("list-products", {
     "list-products-bought": isDoneList,
   });
 

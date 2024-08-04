@@ -1,7 +1,7 @@
 import { useRef, useState, KeyboardEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
-import { setItem } from "../../store/slices/items.slice.ts";
-import { setEditProductItem, setProductItem } from "../../store/slices/products.slice.ts";
+import { addItem } from "../../store/slices/items.slice.ts";
+import { updateProduct, addProduct } from "../../store/slices/products.slice.ts";
 import { InputColorList, InputNameProductList } from "./";
 import { IDataProducts } from "../../types/productsTypes.ts";
 
@@ -12,7 +12,7 @@ export const InputProduct = () => {
   const [color, setColor] = useState("transparent");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const addItem = () => {
+  const addingItem = () => {
     let newText = input.replace(/\s+/g, " ");
     newText = newText.trim();
 
@@ -32,15 +32,15 @@ export const InputProduct = () => {
     };
 
     if (input.trim()) {
-      dispatch(setItem(newItem));
-      compareInputProduct()
+      dispatch(addItem(newItem));
+      isUpdatedProduct()
         ? dispatch(
-            setEditProductItem({
-              id: idEditProduct(),
-              item: editProduct(newText),
+            updateProduct({
+              id: idUpdatedProduct(),
+              item: updatedProduct(newText),
             }),
           )
-        : dispatch(setProductItem(newProduct));
+        : dispatch(addProduct(newProduct));
       setInput("");
       setColor("transparent");
     }
@@ -48,7 +48,7 @@ export const InputProduct = () => {
 
   const handleClickEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === "Enter") {
-      addItem();
+      addingItem();
     }
   };
 
@@ -63,19 +63,19 @@ export const InputProduct = () => {
   };
 
   // Проверка на наличие сохраненного названия продукта
-  const compareInputProduct = () => {
+  const isUpdatedProduct = () => {
     const product = products.filter((a) => a.name === input);
     return product.length !== 0;
   };
 
   // id сохраненного названия продукта
-  const idEditProduct = (): number => {
+  const idUpdatedProduct = (): number => {
     const product = products.filter((a) => a.name === input);
     return product[0].id;
   };
 
   // Изменение объекта сохраненного названия продукта
-  const editProduct = (text: string): IDataProducts => {
+  const updatedProduct = (text: string): IDataProducts => {
     const product = products.find((a) => a.name === input);
     return {
       id: product!.id,
@@ -98,12 +98,12 @@ export const InputProduct = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => handleClickEnter(e)}
           />
-          <button onClick={() => addItem()} className="btn">
+          <button onClick={() => addingItem()} className="btn">
             Добавить
           </button>
-          <InputColorList set={setColor} color={color} />
+          <InputColorList activeColor={color} setColor={setColor} />
         </div>
-        <InputNameProductList input={input} setProduct={setProduct} />
+        <InputNameProductList inputValue={input} setProduct={setProduct} />
       </div>
     </div>
   );

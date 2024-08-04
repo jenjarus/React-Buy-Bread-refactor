@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
-import { setThemeDark } from "../../store/slices/theme.slice.ts";
+import { toggleTheme } from "../../store/slices/theme.slice.ts";
 import logo from "../../assets/logo.png";
 
 export const Header = () => {
@@ -8,7 +8,7 @@ export const Header = () => {
   const dispatch = useAppDispatch();
 
   const handleClickTheme = () => {
-    dispatch(setThemeDark());
+    dispatch(toggleTheme());
   };
 
   const handleBodyClassTheme = () => {

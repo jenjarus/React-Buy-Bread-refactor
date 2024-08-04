@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, KeyboardEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 import { IDataProducts } from "../../types/productsTypes.ts";
-import { setEdit } from "../../store/slices/input.slice.ts";
-import { setEditProductItem, setProductItem } from "../../store/slices/products.slice.ts";
-import { setEditItem } from "../../store/slices/items.slice.ts";
+import { setInputUpdatedItem } from "../../store/slices/input.slice.ts";
+import { updateProduct, addProduct } from "../../store/slices/products.slice.ts";
+import { updateItem } from "../../store/slices/items.slice.ts";
 import { InputColorList, InputNameProductList } from "./";
 import { IDataItems } from "../../types/itemsTypes.ts";
 
 export const InputEditProduct = () => {
-  const { idEdit: id } = useAppSelector((state) => state.inputSlice);
+  const { idUpdatedItem: id } = useAppSelector((state) => state.inputSlice);
   const { items } = useAppSelector((state) => state.itemsSlice);
   const { products } = useAppSelector((state) => state.productsSlice);
   const dispatch = useAppDispatch();
@@ -17,8 +17,8 @@ export const InputEditProduct = () => {
   const [color, setColor] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const defaultEditParam = {
-    inputEdit: false,
-    idEdit: 0,
+    isUpdatedItem: false,
+    idUpdatedItem: 0,
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const InputEditProduct = () => {
     }
   }, [editItem]);
 
-  const addItem = () => {
+  const addingItem = () => {
     if (input.trim()) {
       let newText = input.replace(/\s+/g, " ");
       newText = newText.trim();
@@ -41,29 +41,29 @@ export const InputEditProduct = () => {
         name: newText,
       };
 
-      dispatch(setEditItem(newItem as IDataItems));
-      dispatch(setEdit(defaultEditParam));
-      compareInputProduct()
+      dispatch(updateItem(newItem as IDataItems));
+      dispatch(setInputUpdatedItem(defaultEditParam));
+      isUpdatedProduct()
         ? dispatch(
-            setEditProductItem({
-              id: idEditProduct(),
-              item: editProduct(newText),
+            updateProduct({
+              id: idUpdatedProduct(),
+              item: updatedProduct(newText),
             }),
           )
-        : dispatch(setProductItem(newProduct));
+        : dispatch(addProduct(newProduct));
     } else {
-      dispatch(setEdit(defaultEditParam));
+      dispatch(setInputUpdatedItem(defaultEditParam));
     }
   };
 
   const handleClickEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === "Enter") {
-      addItem();
+      addingItem();
     }
   };
 
   const handleClickClose = () => {
-    dispatch(setEdit(defaultEditParam));
+    dispatch(setInputUpdatedItem(defaultEditParam));
   };
 
   // Вставка сохраненного названия продукта
@@ -77,19 +77,19 @@ export const InputEditProduct = () => {
   };
 
   // Проверка на наличие сохраненного названия продукта
-  const compareInputProduct = () => {
+  const isUpdatedProduct = () => {
     const product = products.filter((a) => a.name === input);
     return product.length !== 0;
   };
 
   // id сохраненного названия продукта
-  const idEditProduct = (): number => {
+  const idUpdatedProduct = (): number => {
     const product = products.filter((a) => a.name === input);
     return product[0].id;
   };
 
   // Изменение объекта сохраненного названия продукта
-  const editProduct = (text: string): IDataProducts => {
+  const updatedProduct = (text: string): IDataProducts => {
     const product = products.find((a) => a.name === input);
     return {
       id: product!.id,
@@ -111,13 +111,13 @@ export const InputEditProduct = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => handleClickEnter(e)}
           />
-          <button className="btn" onClick={() => addItem()}>
+          <button className="btn" onClick={() => addingItem()}>
             Изменить
           </button>
-          <InputColorList set={setColor} color={color} />
+          <InputColorList activeColor={color} setColor={setColor} />
           <span className="icon icon-close" onClick={() => handleClickClose()}></span>
         </div>
-        <InputNameProductList input={input} setProduct={setProduct} />
+        <InputNameProductList inputValue={input} setProduct={setProduct} />
       </div>
     </div>
   );
