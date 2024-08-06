@@ -79,6 +79,8 @@ export const InputProduct: FC<IProps> = ({ isUpdatedItem }) => {
 
   const handleClickClose = () => {
     dispatch(setInputUpdatedItem(defaultEditParam));
+    setInput("");
+    setColor("transparent");
   };
 
   // Вставка сохраненного названия продукта
